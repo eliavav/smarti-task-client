@@ -21,34 +21,38 @@ export class AppComponent implements OnInit {
   public ngOnInit() {
     this.getUsers();
     this.userForm = this.form.group({
-      name: [],
-      address: [],
-      phoneNumber: [],
+      UserId: [],
+      UserName: [],
+      UserAddress: [],
+      UserPhone: [],
     })
   }
 
 
   deleteUser(user: any) {
-    this.http.delete("localhost:8000/user/" + user.id).subscribe(() => {
+    console.log(user);
+    this.http.delete("http://127.0.0.1:8000/user/" + user.UserId).subscribe(() => {
       this.getUsers();
     });
   }
 
   updateUser(user:any) {
+    console.log(user);
     this.isUserToUpdate = true;
-    this.userId = user.id;
+    this.userId = user.UserId;
     this.isUserForm = true;
     const userValues = {
-      name: user.API,
-      address: user.Description,
-      phoneNumber: user.Category,
+      UserId: user.UserId,
+      UserName: user.UserName,
+      UserAddress: user.UserAddress,
+      UserPhone: user.UserPhone,
     };
     this.userForm.patchValue(userValues);
   }
 
   private getUsers() {
-    this.http.get('https://api.publicapis.org/entries?cors=no&category=Animals').subscribe((res: any) => {
-      this.users = res.entries;
+    this.http.get('http://127.0.0.1:8000/user').subscribe((res: any) => {
+      this.users = res;
     });
   }
 
@@ -59,16 +63,21 @@ export class AppComponent implements OnInit {
   sendForm() {
     if (! this.isUserToUpdate) {
       console.log(this.userForm.value);
-      this.http.post("localhost:8000/user/",this.userForm.value).subscribe(() => {
+      this.http.post("http://127.0.0.1:8000/user",this.userForm.value).subscribe(() => {
         this.getUsers();
         this.isUserForm = false;
       });
     } else {
-      this.http.put("localhost:8000/user/" + this.userId, this.userForm.value).subscribe(() => {
+      console.log(this.userForm.value);
+      this.http.put("http://127.0.0.1:8000/user", this.userForm.value).subscribe(() => {
         this.getUsers();
         this.isUserForm = false;
       })
     }
+
+  }
+
+  updateForm(){
 
   }
 }
