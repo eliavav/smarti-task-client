@@ -6,13 +6,19 @@ Author:
   Eliav Aviad
 
 Description:
-  CRUD(Create Read Update Delete) table, 
-  for users.
+  CRUD(Create Read Update Delete) table for users, 
   with 3 properties: 
     
     User name, Address, Phone number
+   
+   add and update using Reactive Forms,
+   
+   autocomplete search input with server side search.
+   
+   
+   
 
-Technologies:
+
 
   Backend:
   
@@ -28,4 +34,4 @@ Technologies:
     
      name: myusersdb
      username: root
-     passwoed: a12345678
+     password: a12345678
