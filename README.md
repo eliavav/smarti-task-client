@@ -41,4 +41,4 @@ Description:
   
   
   *(Task last update on Friday, only youtube video uploaded today, 
-  (update Readmy file with link))
+  (update Readme file with link))
